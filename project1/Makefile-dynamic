@@ -1,0 +1,36 @@
+# Eve Collier
+# project 1: libraries and makefiles
+# csc 328 fall 2023
+sockutils.so.1: connectsock.o connectTCP.o connectUDP.o passivesock.o passiveTCP.o passiveUDP.o errexit.o
+	gcc -fPIC connectsock.o connectTCP.o connectUDP.o passivesock.o passiveTCP.o passiveUDP.o errexit.o -shared -o sockutils.so.1
+
+connectsock.o: connectsock.c
+	gcc -fPIC -c connectsock.c
+
+connectTCP.o: connectTCP.c
+	gcc -fPIC -c connectTCP.c
+
+connectUDP.o: connectUDP.c
+	gcc -fPIC -c connectUDP.c
+
+passivesock.o: passivesock.c
+	gcc -fPIC -c passivesock.c
+
+passiveTCP.o: passiveTCP.c
+	gcc -fPIC -c passiveTCP.c
+
+passiveUDP.o: passiveUDP.c
+	gcc -fPIC -c passiveUDP.c
+
+errexit.o: errexit.c
+	gcc -fPIC -c errexit.c
+
+
+
+.PHONY: clean
+clean:
+	rm -f *.o
+
+.PHONY: realclean
+realclean:
+	rm sockutils.so.1
